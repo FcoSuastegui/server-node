@@ -70,6 +70,37 @@ app.get('/participantes', (request, response) => {
 
 })
 
+app.post('/participantes', (request, response) => {
+
+    const {
+        nombre,
+        paterno,
+        materno,
+        email,
+        telefono,
+        tipo,
+        grado,
+        institucion,
+        tipo_institucion
+    } = request.body;
+
+    connection.query(`CALL GuardarParticipante('${nombre}','${paterno}','${materno}','${email}','${telefono}','${tipo}','${grado}','${institucion}','${tipo_institucion}');`,
+        function(err, res) {
+            if (err) {
+                return response.status(400).json({
+                    status: false,
+                    msg: `Error al registrar participantes: ${err}`
+                })
+            }
+
+            return response.status(200).json({
+                status: true,
+                data
+            })
+        })
+
+})
+
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto', process.env.PORT);
 });
