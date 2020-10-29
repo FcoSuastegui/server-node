@@ -4,9 +4,10 @@
     "description": "Backend para participantes del congreso",
     "main": "index.js",
     "scripts": {
-        "build": "tsc -w",
+        "watch": "tsc -w",
         "dev": "nodemon build/index.js",
-        "start": "node build/index.js"
+        "start": "node build/index.js",
+        "build": "tsc -p ."
     },
     "author": "",
     "license": "ISC",
